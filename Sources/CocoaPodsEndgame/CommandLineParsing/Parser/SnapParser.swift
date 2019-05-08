@@ -2,7 +2,7 @@ import Foundation
 import SPMUtility
 import CarthageKit
 
-struct SnapParser {
+struct SnapParser: ParserProtocol {
     let frameworksPath: OptionArgument<String>
     let useCarthage: OptionArgument<Bool>
     let generatePodfile: OptionArgument<Bool>

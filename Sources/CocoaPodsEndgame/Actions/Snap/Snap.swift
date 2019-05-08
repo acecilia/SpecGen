@@ -1,6 +1,5 @@
 import Foundation
 import CarthageKit
-import Path
 
 class Snap {
     static let frameworkExtension = "framework"
