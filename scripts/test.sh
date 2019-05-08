@@ -24,14 +24,17 @@ packagePath=$(pwd)
 (cd $testWithoutCarthagePath && swift run --package-path $packagePath CocoaPodsEndgame snap --disableCarthage)
 
 # Compare test output with fixture
-diff -qr $testWithCarthagePath $fixtureWithCarthagePath
-if [ $? -eq 1 ];then
+exitCode=0
+diff -qr $testWithCarthagePath $fixtureWithCarthagePath --exclude='.DS_Store' || exitCode=$?
+if [ $exitCode -eq 1 ];then
    echo "The fixture with carthage did not match the test output"
    exit 1
 fi
 
-diff -qr $testWithoutCarthagePath $fixtureWithoutCarthagePath
-if [ $? -eq 1 ];then
+diff -qr $testWithoutCarthagePath $fixtureWithoutCarthagePath --exclude='.DS_Store' || exitCode=$?
+if [ $exitCode -eq 1 ];then
    echo "The fixture without carthage did not match the test output"
    exit 1
 fi
+
+echo "All checks passed successfully"
