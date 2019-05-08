@@ -11,7 +11,7 @@ struct SnapConfig {
 
     init(_ args: SnapArguments) {
         self.frameworksPath = URL(fileURLWithPath: args.frameworksPath ?? SnapConfig.defaultFrameworksPath)
-        if args.useCarthage == false {
+        if args.disableCarthage == true {
             self.useCarthage = .no
         } else {
             let currentDirectory = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)

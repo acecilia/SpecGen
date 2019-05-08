@@ -1,0 +1,7 @@
+github "SnapKit/SnapKit" "5.0.0"
+github "SwiftKickMobile/SwiftMessages" "5.0.1"
+github "antitypical/Result" "4.1.0"
+github "hackiftekhar/IQKeyboardManager" "v6.2.0"
+github "jonkykong/SideMenu" "5.0.3"
+github "madebybowtie/FlagKit" "v2.2"
+github "ninjaprox/NVActivityIndicatorView" "4.6.1"

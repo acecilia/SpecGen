@@ -1,0 +1,10 @@
+# Some frameworks without specific version
+github "SnapKit/SnapKit"
+github "antitypical/Result"
+
+# Some frameworks with specific version
+github "hackiftekhar/IQKeyboardManager" == 6.2
+github "ninjaprox/NVActivityIndicatorView" == 4.6.1
+github "SwiftKickMobile/SwiftMessages" == 5.0.1
+github "jonkykong/SideMenu" == 5.0.3
+github "madebybowtie/FlagKit" == 2.2
