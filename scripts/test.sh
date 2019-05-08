@@ -27,14 +27,14 @@ packagePath=$(pwd)
 exitCode=0
 diff -qr $testWithCarthagePath $fixtureWithCarthagePath --exclude='.DS_Store' || exitCode=$?
 if [ $exitCode -eq 1 ];then
-   echo "The fixture with carthage did not match the test output"
-   exit 1
+  echo "The fixture with carthage did not match the test output"
+  exit 1
 fi
 
 diff -qr $testWithoutCarthagePath $fixtureWithoutCarthagePath --exclude='.DS_Store' || exitCode=$?
 if [ $exitCode -eq 1 ];then
-   echo "The fixture without carthage did not match the test output"
-   exit 1
+  echo "The fixture without carthage did not match the test output"
+  exit 1
 fi
 
 echo "All checks passed successfully"
