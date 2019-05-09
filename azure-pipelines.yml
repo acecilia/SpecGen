@@ -1,6 +1,7 @@
 trigger:
 - master
 
+jobs:
 - job: SwiftPM
   pool:
     vmImage: 'macOS 10.14'
