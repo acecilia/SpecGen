@@ -2,11 +2,11 @@ trigger:
 - master
 
 jobs:
-- job: SwiftPM
+- job: MacTests
   pool:
     vmImage: 'macOS 10.14'
   variables:
     DEVELOPER_DIR: /Applications/Xcode_10.2.app
   steps:
     - script: scripts/test.sh
-      displayName: testttt
+      displayName: test fixtures
