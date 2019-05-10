@@ -110,7 +110,3 @@ class Snap {
         """
     }
 }
-
-private extension Array where Element == FrameworkInfo {
-
-}
