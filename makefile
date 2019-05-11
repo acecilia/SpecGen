@@ -1,5 +1,5 @@
 .DEFAULT_GOAL := install
-.PHONY := format_code generateFixtures generateFixturesData install run test uninstall update
+.PHONY: format_code generateFixtures generateFixturesData help install run test uninstall update updatePhony
 
 # Shell to use, with bash strict mode. See: http://redsymbol.net/articles/unofficial-bash-strict-mode/
 SHELL = /bin/bash -eou pipefail
@@ -35,12 +35,14 @@ test:
 	. scripts/generateFixtures.sh $(testsPath)
 	. scripts/test.sh
 
+# Update dependencies and reload the xcode project
 update:
 	rm -Rf *.xcodeproj
 	swift package update
 	swift package generate-xcodeproj
 	open *.xcodeproj
 
+# Run in a specific directory
 run:
 	# Put in here the path to the folder where you want to run specgen
 	(cd 'Tests/Fixtures/Tests/WithCarthage' && swift run --package-path $(packagePath) specgen bootstrap)
@@ -55,7 +57,14 @@ uninstall:
 format_code:
 	swiftformat .
 
+listTargets:
+	set +o pipefail && $(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
+
+# Add all
+updatePhony:
+	sed -i '' "s/^\.PHONY:.*/.PHONY: $$($(MAKE) listTargets | xargs)/g" makefile
+
 # Prints the list of possible targets. See: https://stackoverflow.com/questions/4219255/how-do-you-get-the-list-of-targets-in-a-makefile
 help:
 	echo "Available targets:"
-	set +o pipefail && $(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
+	$(MAKE) listTargets

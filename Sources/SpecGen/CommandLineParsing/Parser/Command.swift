@@ -10,7 +10,7 @@ enum Command: String, CaseIterable {
     
     var overview: String {
         switch self {
-        case .bootstrap: return "Bootstrap overview"
+        case .bootstrap: return "Generates '.podspec' files for frameworks, so they can be used with CocoaPods"
         }
     }
     

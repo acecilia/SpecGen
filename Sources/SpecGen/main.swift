@@ -2,7 +2,7 @@ import Foundation
 import Basic
 import SPMUtility
 
-let parser = ArgumentParser(usage: "<command> <options>", overview: "A command line utility for generating valid podspecs out of frameworks, so you can break out of the dependency hell")
+let parser = ArgumentParser(usage: "<subcommand> <options>\nRun 'specgen <subcommand> --help' for information about each subcommand", overview: "A command line utility for generating valid podspecs out of frameworks, so you can break out of the dependency hell")
 let bootstrapParser = BootstrapParser(Command.bootstrap.subparser(parser))
 
 do {

@@ -31,7 +31,7 @@ class Bootstrap {
 
     private func generatePodfile(_ frameworksInfo: [FrameworkInfo]) throws {
         let podfileLines: [String] = frameworksInfo.map {
-            return "  pod '\($0.name)', :path => '\(config.frameworksPath.relativePath)'"
+            return "    pod '\($0.name)', :path => '\(config.frameworksPath.relativePath)'"
         }
 
         let generatedPodfilePath = config.frameworksPath.appendingPathComponent(Bootstrap.generatedPodfileName)
@@ -43,8 +43,8 @@ class Bootstrap {
         # Example:
         # load '\(generatedPodfilePath.relativePath)' # <==============
         # target 'MyApp' do
-        #   \(Bootstrap.generatedCocoapodsGroupName) # <==============
-        #   pod 'Alamofire', '~> 3.0'
+        #     \(Bootstrap.generatedCocoapodsGroupName) # <==============
+        #     pod 'Alamofire', '~> 3.0'
         # end
         #
         # For more information about this setup see the following links:
