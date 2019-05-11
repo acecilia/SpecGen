@@ -1,4 +1,7 @@
+[![Build Status](https://dev.azure.com/acecilia/CocoaPodsEndgame/_apis/build/status/acecilia.CocoaPodsEndgame?branchName=master)](https://dev.azure.com/acecilia/CocoaPodsEndgame/_build/latest?definitionId=1&branchName=master)
+
 # SpecGen
+
 SpecGen is a command line tool written in Swift that generates `.podspec` files from frameworks, so they can be used in a [CocoaPods](https://github.com/CocoaPods/CocoaPods) setup.
 
 * 👌 Generates `.podspec` files from `.framework` files
