@@ -1,40 +1,24 @@
-set -eou pipefail
+for fixtureName in $fixtureNames; do
+  echo "Running test for fixture '$fixtureName'"
 
-generatedTestPath='build/Tests'
-testWithCarthagePath="$generatedTestPath/WithCarthage"
-testWithoutCarthagePath="$generatedTestPath/WithoutCarthage"
+  testPath=$testsPath/$fixtureName
+  fixturePath=$fixturesPath/$fixtureName
 
-fixturesPath='Tests/Fixtures'
-testDataPath="$fixturesPath/TestData"
-fixtureWithCarthagePath="$fixturesPath/WithCarthage"
-fixtureWithoutCarthagePath="$fixturesPath/WithoutCarthage"
+  # Compare fixture data with fixture
+  exitCode=0
+  diff -qr $fixturesDataPath $fixturePath --exclude='Cartfile' --exclude='*.podspec' --exclude='Podfile' || exitCode=$?
+  if [ $exitCode -eq 1 ];then
+    echo "The fixture data in '$fixturesDataPath' did not match the fixture at path '$fixturePath'"
+    exit 1
+  fi
 
-# Clean
-mkdir -p $generatedTestPath
-rm -Rf $testWithCarthagePath
-rm -Rf $testWithoutCarthagePath
-
-# Copy test data to fixture location
-cp -R $testDataPath $testWithCarthagePath
-cp -R $testDataPath $testWithoutCarthagePath
-
-# Generate fixture
-packagePath=$(pwd)
-(cd $testWithCarthagePath && swift run --package-path $packagePath CocoaPodsEndgame snap)
-(cd $testWithoutCarthagePath && swift run --package-path $packagePath CocoaPodsEndgame snap --disableCarthage)
-
-# Compare test output with fixture
-exitCode=0
-diff -qr $testWithCarthagePath $fixtureWithCarthagePath --exclude='.DS_Store' || exitCode=$?
-if [ $exitCode -eq 1 ];then
-  echo "The fixture with carthage did not match the test output"
-  exit 1
-fi
-
-diff -qr $testWithoutCarthagePath $fixtureWithoutCarthagePath --exclude='.DS_Store' || exitCode=$?
-if [ $exitCode -eq 1 ];then
-  echo "The fixture without carthage did not match the test output"
-  exit 1
-fi
+  # Compare test with fixture
+  exitCode=0
+  diff -qr $testPath $fixturePath || exitCode=$?
+  if [ $exitCode -eq 1 ];then
+    echo "The test '$fixtureName' at path '$testPath' did not match the fixture at path '$fixturePath'"
+    exit 1
+  fi
+done
 
 echo "All checks passed successfully"
