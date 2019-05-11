@@ -141,4 +141,4 @@ This allows to add some frameworks in your project by following the [official Ca
 
 ## License
 
-XcodeGen is licensed under the MIT license. See [LICENSE](LICENSE) for more info.
+SpecGen is licensed under the MIT license. See [LICENSE](LICENSE) for more info.
