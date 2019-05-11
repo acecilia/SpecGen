@@ -1,3 +1,6 @@
+.DEFAULT_GOAL := install
+.PHONY := format_code generateFixtures generateFixturesData install run test uninstall update
+
 # Shell to use, with bash strict mode. See: http://redsymbol.net/articles/unofficial-bash-strict-mode/
 SHELL = /bin/bash -eou pipefail
 # Do not print commands being executed | Warn on undefined variables
@@ -41,6 +44,16 @@ update:
 run:
 	# Put in here the path to the folder where you want to run specgen
 	(cd 'Tests/Fixtures/Tests/WithCarthage' && swift run --package-path $(packagePath) specgen bootstrap)
+
+install:
+	swift build -c release
+	cp -f .build/release/specgen /usr/local/bin/specgen
+
+uninstall:
+	rm /usr/local/bin/specgen
+
+format_code:
+	swiftformat .
 
 # Prints the list of possible targets. See: https://stackoverflow.com/questions/4219255/how-do-you-get-the-list-of-targets-in-a-makefile
 help:
