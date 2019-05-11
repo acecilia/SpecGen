@@ -1,4 +1,14 @@
-[![Build Status](https://dev.azure.com/acecilia/CocoaPodsEndgame/_apis/build/status/acecilia.CocoaPodsEndgame?branchName=master)](https://dev.azure.com/acecilia/CocoaPodsEndgame/_build/latest?definitionId=1&branchName=master)
+<p align="center">
+  <a href="https://github.com/acecilia/CocoaPodsEndgame/releases">
+    <img src="https://img.shields.io/github/release/acecilia/CocoaPodsEndgame.svg"/>
+  </a>
+  <a href="https://dev.azure.com/acecilia/CocoaPodsEndgame/_build/latest?definitionId=1&branchName=master">
+    <img src="https://dev.azure.com/acecilia/CocoaPodsEndgame/_apis/build/status/acecilia.CocoaPodsEndgame?branchName=master"/>
+  </a>
+  <a href="https://github.com/acecilia/CocoaPodsEndgame/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/acecilia/CocoaPodsEndgame.svg"/>
+  </a>
+</p>
 
 # SpecGen
 
