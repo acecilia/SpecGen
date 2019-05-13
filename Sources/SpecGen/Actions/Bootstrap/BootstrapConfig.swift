@@ -1,5 +1,5 @@
-import Foundation
 import CarthageKit
+import Foundation
 
 struct BootstrapConfig {
     static let defaultFrameworksPath = "Carthage/Build/iOS"
@@ -10,21 +10,21 @@ struct BootstrapConfig {
     let generatePodfile: Bool
 
     init(_ args: BootstrapArguments) {
-        self.frameworksPath = URL(fileURLWithPath: args.frameworksPath ?? BootstrapConfig.defaultFrameworksPath)
+        frameworksPath = URL(fileURLWithPath: args.frameworksPath ?? BootstrapConfig.defaultFrameworksPath)
         if args.disableCarthage == true {
-            self.useCarthage = .no
+            useCarthage = .no
         } else {
             let currentDirectory = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
             let cartfilePath = Cartfile.url(in: currentDirectory)
             let resolvedCartfilePath = ResolvedCartfile.url(in: currentDirectory)
 
             if FileManager.default.fileExists(atPath: cartfilePath.path), FileManager.default.fileExists(atPath: resolvedCartfilePath.path) {
-                self.useCarthage = .yes(cartfilePath: cartfilePath, resolvedCartfilePath: resolvedCartfilePath)
+                useCarthage = .yes(cartfilePath: cartfilePath, resolvedCartfilePath: resolvedCartfilePath)
             } else {
-                self.useCarthage = .no
+                useCarthage = .no
             }
         }
-        self.generatePodfile = args.generatePodfile ?? BootstrapConfig.defaultValueForGeneratePodfile
+        generatePodfile = args.generatePodfile ?? BootstrapConfig.defaultValueForGeneratePodfile
     }
 }
 

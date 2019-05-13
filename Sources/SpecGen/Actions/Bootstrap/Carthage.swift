@@ -1,5 +1,5 @@
-import Foundation
 import CarthageKit
+import Foundation
 
 class Carthage {
     static let carthageVersionRegex = try! NSRegularExpression(pattern: "\\d+(\\.\\d+){0,2}")
@@ -11,7 +11,7 @@ class Carthage {
 
     init(_ cartfilePath: URL, _ resolvedCartfilePath: URL) throws {
         let frameworkMappings = try Carthage.getFrameworks(cartfilePath)
-        self.carthageDependencies = try Carthage.setVersion(resolvedCartfilePath, frameworkMappings)
+        carthageDependencies = try Carthage.setVersion(resolvedCartfilePath, frameworkMappings)
     }
 
     func filterAndFixVersion(_ frameworksInfo: [FrameworkInfo]) throws -> [FrameworkInfo] {

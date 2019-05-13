@@ -1,6 +1,6 @@
 VERSION = 0.0.1
 .DEFAULT_GOAL := install
-.PHONY: format_code generateFixtures generateFixturesData help install prepareRelease release run test uninstall update updatePhony
+.PHONY: formatCode generateFixtures generateFixturesData help install listTargets prepareRelease release run test uninstall update updatePhony
 
 # Shell to use, with bash strict mode. See: http://redsymbol.net/articles/unofficial-bash-strict-mode/
 SHELL = /bin/bash -eou pipefail
@@ -55,10 +55,10 @@ install:
 uninstall:
 	rm /usr/local/bin/specgen
 
-format_code:
+formatCode:
 	swiftformat .
 
-prepareRelease: updatePhony format_code
+prepareRelease: updatePhony formatCode
 	sed -i '' 's|\(let version = Version("\)\(.*\)\(")\)|\1$(VERSION)\3|' Sources/specgen/main.swift
 
 release:
@@ -68,7 +68,7 @@ release:
 	git push origin --tags
 
 listTargets:
-	set +o pipefail && $(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
+	set +o pipefail && $(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]'
 
 # Add all targets to .PHONY
 updatePhony:

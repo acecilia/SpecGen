@@ -7,8 +7,8 @@ struct BootstrapArguments {
     let generatePodfile: Bool?
 
     init(_ rawArguments: ArgumentParser.Result, parser: BootstrapParser) {
-        self.frameworksPath = rawArguments.get(parser.frameworksPath)
-        self.disableCarthage = rawArguments.get(parser.disableCarthage)
-        self.generatePodfile = rawArguments.get(parser.generatePodfile)
+        frameworksPath = rawArguments.get(parser.frameworksPath)
+        disableCarthage = rawArguments.get(parser.disableCarthage)
+        generatePodfile = rawArguments.get(parser.generatePodfile)
     }
 }

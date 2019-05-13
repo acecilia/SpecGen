@@ -1,0 +1,2 @@
+--exclude .build build
+--swiftversion 5.0

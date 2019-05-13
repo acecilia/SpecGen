@@ -1,5 +1,5 @@
-import Foundation
 import Basic
+import Foundation
 import SPMUtility
 
 let version = Version("0.0.1")
@@ -10,7 +10,7 @@ let arguments = Array(ProcessInfo.processInfo.arguments.dropFirst())
 
 do {
     let commandLineArguments = try rootParser.argumentParser.parse(arguments)
-    
+
     // If execution got to this point, means that the provided arguments are correct
 
     switch try Command(rootParser.argumentParser, commandLineArguments) {
@@ -21,7 +21,7 @@ do {
         try boostrap.run()
     }
 
-} catch  {
+} catch {
     switch error {
     case let error as ArgumentParserError:
         print(error.description)

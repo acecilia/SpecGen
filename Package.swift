@@ -8,7 +8,7 @@ let package = Package(
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/apple/swift-package-manager.git", .revision("swift-DEVELOPMENT-SNAPSHOT-2019-03-04-a")),
-        .package(url: "https://github.com/Carthage/Carthage.git", .branch("master"))
+        .package(url: "https://github.com/Carthage/Carthage.git", .branch("master")),
     ],
     targets: [
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
