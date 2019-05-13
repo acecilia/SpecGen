@@ -3,7 +3,7 @@
     <img src="https://img.shields.io/github/release/acecilia/SpecGen.svg"/>
   </a>
   <a href="https://dev.azure.com/acecilia/SpecGen/_build/latest?definitionId=1&branchName=master">
-    <img src="https://dev.azure.com/acecilia/SpecGen/_apis/build/status/acecilia.CocoaPodsEndgame?branchName=master"/>
+    <img src="https://dev.azure.com/acecilia/SpecGen/_apis/build/status/acecilia.SpecGen?branchName=master"/>
   </a>
   <a href="https://github.com/acecilia/SpecGen/blob/master/LICENSE">
     <img src="https://img.shields.io/github/license/acecilia/SpecGen.svg"/>

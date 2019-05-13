@@ -62,8 +62,6 @@ prepareRelease: updatePhony formatCode
 	sed -i '' 's|\(let version = Version("\)\(.*\)\(")\)|\1$(VERSION)\3|' Sources/specgen/main.swift
 
 release:
-	git add .
-	git commit -m "Update to $(VERSION)"
 	git tag $(VERSION)
 	git push origin --tags
 
