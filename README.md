@@ -1,12 +1,12 @@
 <p align="center">
-  <a href="https://github.com/acecilia/CocoaPodsEndgame/releases">
-    <img src="https://img.shields.io/github/release/acecilia/CocoaPodsEndgame.svg"/>
+  <a href="https://github.com/acecilia/SpecGen/releases">
+    <img src="https://img.shields.io/github/release/acecilia/SpecGen.svg"/>
   </a>
-  <a href="https://dev.azure.com/acecilia/CocoaPodsEndgame/_build/latest?definitionId=1&branchName=master">
-    <img src="https://dev.azure.com/acecilia/CocoaPodsEndgame/_apis/build/status/acecilia.CocoaPodsEndgame?branchName=master"/>
+  <a href="https://dev.azure.com/acecilia/SpecGen/_build/latest?definitionId=1&branchName=master">
+    <img src="https://dev.azure.com/acecilia/SpecGen/_apis/build/status/acecilia.CocoaPodsEndgame?branchName=master"/>
   </a>
-  <a href="https://github.com/acecilia/CocoaPodsEndgame/blob/master/LICENSE">
-    <img src="https://img.shields.io/github/license/acecilia/CocoaPodsEndgame.svg"/>
+  <a href="https://github.com/acecilia/SpecGen/blob/master/LICENSE">
+    <img src="https://img.shields.io/github/license/acecilia/SpecGen.svg"/>
   </a>
 </p>
 
@@ -14,11 +14,10 @@
 
 SpecGen is a command line tool written in Swift that generates `.podspec` files from frameworks, so they can be used in a [CocoaPods](https://github.com/CocoaPods/CocoaPods) setup.
 
-* 👌 Generates `.podspec` files from `.framework` files
-* 👌[Carthage](https://github.com/Carthage/Carthage) compatibility, so the generated `.podspec` files contain the version specified in the `Carfile.resolved` (effectively delegating to Carthage the dependency resolution)
-* 💥 Use CocoaPods and Carthage together, allowing pods to depend on frameworks installed by Carthage
-* 😂 Massively reduce build times by substituting source code pods with their corresponding `.framework`
-* 👌 Improve Xcode speed and responsiveness by substituting source code pods with their corresponding `.framework`
+* 🔥 Generates `.podspec` files from `.framework` files
+* 🔥[Carthage](https://github.com/Carthage/Carthage) compatibility, so the generated `.podspec` files contain the version specified in the `Carfile.resolved` (effectively delegating to Carthage the dependency resolution)
+* 🔥 Use CocoaPods and Carthage together, allowing pods to depend on frameworks installed by Carthage
+* 🔥 Massively reduce build times by substituting source code pods with their `.framework`
 
 ## Installing
 
