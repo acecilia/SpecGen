@@ -13,6 +13,11 @@ do {
 
     // If execution got to this point, means that the provided arguments are correct
 
+    if commandLineArguments.get(rootParser.printVersion) == true {
+        print(version)
+        exit(0)
+    }
+
     switch try Command(rootParser.argumentParser, commandLineArguments) {
     case .bootstrap:
         let boostrapArgs = BootstrapArguments(commandLineArguments, parser: bootstrapSubparser)
