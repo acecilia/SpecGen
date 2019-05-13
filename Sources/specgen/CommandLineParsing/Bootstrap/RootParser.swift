@@ -14,7 +14,7 @@ class RootParser {
     init() {
         argumentParser = ArgumentParser(
             usage: "<subcommand> <options>\nRun '\(ProcessInfo.processInfo.processName) <subcommand> --help' for information about each subcommand",
-            overview: "A command line utility for generating podspecs out of frameworks, so you can break out of the CocoaPods dependency hell"
+            overview: "A command line tool for generating podspec files from frameworks, so they can be used in a CocoaPods setup"
         )
     }
 }

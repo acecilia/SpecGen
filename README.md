@@ -12,7 +12,7 @@
 
 # SpecGen
 
-SpecGen is a command line tool written in Swift that generates `.podspec` files from frameworks, so they can be used in a [CocoaPods](https://github.com/CocoaPods/CocoaPods) setup.
+SpecGen is a command line tool for generating podspec files from frameworks, so they can be used in a [CocoaPods](https://github.com/CocoaPods/CocoaPods) setup.
 
 * 🔥 Generates `.podspec` files from `.framework` files
 * 🔥[Carthage](https://github.com/Carthage/Carthage) compatibility, so the generated `.podspec` files contain the version specified in the `Carfile.resolved` (effectively delegating to Carthage the dependency resolution)
