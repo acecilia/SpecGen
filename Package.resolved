@@ -6,7 +6,7 @@
         "repositoryURL": "https://github.com/Carthage/Carthage.git",
         "state": {
           "branch": "master",
-          "revision": "dae36671bf444aad0338878523a54c8c255b42e1",
+          "revision": "386fbf3ee5e53c3b7c033cbdae26a9dadd4bda0e",
           "version": null
         }
       },
@@ -87,7 +87,7 @@
         "repositoryURL": "https://github.com/apple/swift-llbuild.git",
         "state": {
           "branch": "master",
-          "revision": "3aaff32283b6968473f740559b6183d149dbfa36",
+          "revision": "f3798273ceba6a12cfbb06652ba7e2d8ce9b3726",
           "version": null
         }
       },

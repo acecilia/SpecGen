@@ -20,8 +20,7 @@ class Bootstrap {
         var frameworksInfo = try getFrameworksInfo()
         if case let .yes(cartfilePath, resolvedCartfilePath) = config.useCarthage {
             let carthage = try Carthage(cartfilePath, resolvedCartfilePath)
-            frameworksInfo = try carthage.filter(frameworksInfo)
-            frameworksInfo = try carthage.fixversion(frameworksInfo)
+            frameworksInfo = try carthage.filterAndFixVersion(frameworksInfo)
         }
         try generatePodspecFiles(from: frameworksInfo)
         if config.generatePodfile {

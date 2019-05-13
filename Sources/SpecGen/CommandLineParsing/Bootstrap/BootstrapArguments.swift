@@ -1,7 +1,7 @@
 import Foundation
 import SPMUtility
 
-struct BootstrapArguments: ArgumentsProtocol {
+struct BootstrapArguments {
     let frameworksPath: String?
     let disableCarthage: Bool?
     let generatePodfile: Bool?

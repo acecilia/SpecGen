@@ -1,5 +1,6 @@
+VERSION = 0.0.1
 .DEFAULT_GOAL := install
-.PHONY: format_code generateFixtures generateFixturesData help install run test uninstall update updatePhony
+.PHONY: format_code generateFixtures generateFixturesData help install prepareRelease release run test uninstall update updatePhony
 
 # Shell to use, with bash strict mode. See: http://redsymbol.net/articles/unofficial-bash-strict-mode/
 SHELL = /bin/bash -eou pipefail
@@ -57,10 +58,19 @@ uninstall:
 format_code:
 	swiftformat .
 
+prepareRelease: updatePhony format_code
+	sed -i '' 's|\(let version = Version("\)\(.*\)\(")\)|\1$(VERSION)\3|' Sources/specgen/main.swift
+
+release:
+	git add .
+	git commit -m "Update to $(VERSION)"
+	git tag $(VERSION)
+	git push origin --tags
+
 listTargets:
 	set +o pipefail && $(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | awk -v RS= -F: '/^# File/,/^# Finished Make data base/ {if ($$1 !~ "^[#.]") {print $$1}}' | sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
 
-# Add all
+# Add all targets to .PHONY
 updatePhony:
 	sed -i '' "s/^\.PHONY:.*/.PHONY: $$($(MAKE) listTargets | xargs)/g" makefile
 

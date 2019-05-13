@@ -5,9 +5,6 @@ import PackageDescription
 
 let package = Package(
     name: "SpecGen",
-    products: [
-        .executable(name: "specgen", targets: ["SpecGen"])
-    ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
         .package(url: "https://github.com/apple/swift-package-manager.git", .revision("swift-DEVELOPMENT-SNAPSHOT-2019-03-04-a")),
@@ -17,12 +14,12 @@ let package = Package(
         // Targets are the basic building blocks of a package. A target can define a module or a test suite.
         // Targets can depend on other targets in this package, and on products in packages which this package depends on.
         .target(
-            name: "SpecGen",
+            name: "specgen",
             dependencies: ["SPMUtility", "CarthageKit"]
         ),
         .testTarget(
             name: "SpecGenTests",
-            dependencies: ["SpecGen"]
+            dependencies: ["specgen"]
         ),
     ]
 )

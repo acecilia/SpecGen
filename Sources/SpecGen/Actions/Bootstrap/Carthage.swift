@@ -7,25 +7,21 @@ class Carthage {
     static let carthageSpecGenStart = "# \(carthageSpecGenKey):start"
     static let carthageSpecGenFrameworksRegex = try! NSRegularExpression(pattern: "# \(carthageSpecGenKey):frameworks(.*)")
 
-    private let carthageDependencies: [CarthageInfo]
+    private let carthageDependencies: [FrameworkInfo]
 
     init(_ cartfilePath: URL, _ resolvedCartfilePath: URL) throws {
         let frameworkMappings = try Carthage.getFrameworks(cartfilePath)
         self.carthageDependencies = try Carthage.setVersion(resolvedCartfilePath, frameworkMappings)
     }
 
-    func filter(_ frameworksInfo: [FrameworkInfo]) throws -> [FrameworkInfo] {
-        return frameworksInfo.filter { frameworkInfo in
-            carthageDependencies.contains { $0.name == frameworkInfo.name }
-        }
-    }
-
-    func fixversion(_ frameworksInfo: [FrameworkInfo]) throws -> [FrameworkInfo] {
-        let fixedFrameworksInfo: [FrameworkInfo] = frameworksInfo.map { frameworkInfo in
-            guard let match = carthageDependencies.first(where: { $0.name == frameworkInfo.name }) else {
-                fatalError()
+    func filterAndFixVersion(_ frameworksInfo: [FrameworkInfo]) throws -> [FrameworkInfo] {
+        let fixedFrameworksInfo: [FrameworkInfo] = frameworksInfo.compactMap { frameworkInfo in
+            if let match = carthageDependencies.first(where: { $0.name == frameworkInfo.name }) {
+                return FrameworkInfo(name: frameworkInfo.name, version: match.version)
+            } else {
+                // The framework is not found in the cartfile
+                return nil
             }
-            return FrameworkInfo(name: frameworkInfo.name, version: match.version)
         }
         return fixedFrameworksInfo
     }
@@ -59,26 +55,26 @@ class Carthage {
         return frameworks
     }
 
-    private static func setVersion(_ resolvedCartfilePath: URL, _ frameworkMappings: [FrameworkMapping]) throws -> [CarthageInfo] {
+    private static func setVersion(_ resolvedCartfilePath: URL, _ frameworkMappings: [FrameworkMapping]) throws -> [FrameworkInfo] {
         let resolvedCartfileContent = try String(contentsOf: resolvedCartfilePath)
         guard let resolvedCartfile = ResolvedCartfile.from(string: resolvedCartfileContent).value else {
             throw Error.resolvedCartfileCouldNotBeRed(resolvedCartfilePath: resolvedCartfilePath)
         }
 
-        let carthageInfo: [CarthageInfo] = frameworkMappings.compactMap { frameworkMapping -> [CarthageInfo] in
+        let carthageInfo: [FrameworkInfo] = try frameworkMappings.compactMap { frameworkMapping -> [FrameworkInfo] in
             guard let dependency = resolvedCartfile.dependencies.first(where: { $0.key.name == frameworkMapping.name }) else {
-                fatalError()
+                throw Error.frameworkFoundInCartfileNotFoundInResolvedCartfile(frameworkName: frameworkMapping.name)
             }
 
             let carthageVersionString = dependency.value.description
             // Carthage versions return the tag name, which in some cases is not exacly following semantic versioning,
             // and may follow the pattern 'v1.2.3'. A simple regex should fix this issue
             guard let parsedVersion = Carthage.carthageVersionRegex.firstMatch(in: carthageVersionString) else {
-                fatalError()
+                throw Error.carthageVersionCouldNotBeParsed(frameworkName: dependency.key.name, version: dependency.value.description)
             }
 
             return frameworkMapping.frameworks.map {
-                CarthageInfo(name: $0, version: parsedVersion)
+                FrameworkInfo(name: $0, version: parsedVersion)
             }
         }.flatMap { $0 }
 
