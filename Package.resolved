@@ -5,8 +5,8 @@
         "package": "Carthage",
         "repositoryURL": "https://github.com/Carthage/Carthage.git",
         "state": {
-          "branch": "master",
-          "revision": "386fbf3ee5e53c3b7c033cbdae26a9dadd4bda0e",
+          "branch": "0.33.0",
+          "revision": "c8ac06e106b6b61f907918bfb2b7a5c432de4678",
           "version": null
         }
       },
