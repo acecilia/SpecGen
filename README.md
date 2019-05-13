@@ -15,7 +15,7 @@
 SpecGen is a command line tool for generating podspec files from frameworks, so they can be used in a [CocoaPods](https://github.com/CocoaPods/CocoaPods) setup.
 
 * 🔥 Generates `.podspec` files from `.framework` files
-* 🔥[Carthage](https://github.com/Carthage/Carthage) compatibility, so the generated `.podspec` files contain the version specified in the `Carfile.resolved` (effectively delegating to Carthage the dependency resolution)
+* 🔥 [Carthage](https://github.com/Carthage/Carthage) compatibility, so the generated `.podspec` files contain the version specified in the `Carfile.resolved` (effectively delegating to Carthage the dependency resolution)
 * 🔥 Use CocoaPods and Carthage together, allowing pods to depend on frameworks installed by Carthage
 * 🔥 Massively reduce build times by substituting source code pods with their `.framework`
 
